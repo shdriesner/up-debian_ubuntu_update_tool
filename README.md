@@ -8,7 +8,7 @@
 
 2. Installation:
 
- Unaip the "up" bash script from the zip archive and move it to either
+ Unzip the "up" bash script from the zip archive and move it to either
  /usr/local/bin or ~/bin. You can either do this from a command line or simply
  drag the file out of Archive Manager to wherever you'd like it to go.
 
