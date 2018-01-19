@@ -14,16 +14,16 @@ set -e
 update() {
 
 echo "Starting full system update..."
-sudo apt update
-sudo apt dist-upgrade -yy
+sudo apt-get update
+sudo apt-get dist-upgrade -yy
 
 }
 
 clean() {
 
 echo "Cleaning up..."
-sudo apt autoremove -yy
-sudo apt autoclean
+sudo apt-get autoremove -yy
+sudo apt-get autoclean
 
 }
 
