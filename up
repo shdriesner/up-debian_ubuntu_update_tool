@@ -72,13 +72,13 @@ echo "Up -- Debian/Ubuntu Update Tool (Version 1.0)"
 # Update and clean:
 
 if [ "$1" == "--clean" ]; then
-	update
+    update
     clean
     leave
 fi
 
 if [ "$1" == "--help" ]; then
-	up-help
+    up-help
     exit
 fi
 
