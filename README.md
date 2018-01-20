@@ -14,7 +14,7 @@
 
  Note: scripts that are run from the ~/bin directory cannot be prefixed with
  'sudo' as the system will fail to find them. Those who intend to run up from
- a script for cron, anacron or systemd timers should place it in /usr/local/nin
+ a script for cron, anacron or systemd timers should place it in /usr/local/bin
  This is also the best practice if there are more than one administrator
  accounts on the machine.
 
