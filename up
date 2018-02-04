@@ -85,9 +85,10 @@ fi
 # Check for invalid argument
 
 if  [ -n "$1"  ]; then
-    echo "Up Error: Invalid argument. Try 'up --help' for more info."
+    echo "Up Error: Invalid argument. Try 'up --help' for more info." >&2
     exit 1
 fi
 
 update
 leave
+
