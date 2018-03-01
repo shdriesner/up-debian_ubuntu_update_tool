@@ -18,7 +18,7 @@
  This is also the best practice if there are more than one administrator
  accounts on the machine.
 
-5. License.
+4. License.
 
  Up is free softare. You can redistribute it and/or modify it under the
  terms of the GNU General Public License Version 2.0. as published by
