@@ -9,34 +9,44 @@
 
 set -e
 
+# Variable defaults
+CLEAN=no
+
 # Functions:
 
-update() {
+# update function
+# => if CLEAN is set to "yes", then execute clean
+# => CLEAN will be set to "yes" if --clean is specified
+#    at the command line.
+function update() {
 
-echo "Starting full system update..."
-sudo apt update
-sudo apt dist-upgrade -yy
-
-}
-
-clean() {
-
-echo "Cleaning up..."
-sudo apt autoremove -yy
-sudo apt autoclean
+    echo "Starting full system update..."
+    sudo apt update
+    sudo apt dist-upgrade -yy
+    [ "Xyes" == "X${CLEAN}" ] && clean
 
 }
 
-leave() {
+function clean() {
 
-echo "--------------------"
-echo "- Update Complete! -"
-echo "--------------------"
-exit
+    echo "Cleaning up..."
+    sudo apt autoremove -yy
+    sudo apt autoclean
 
 }
 
-up-help() {
+function leave() {
+
+cat << _EOF_
+--------------------
+- Update Complete! -
+--------------------
+_EOF_
+exit 0
+
+}
+
+function up-help() {
 
 cat << _EOF_
 
@@ -61,6 +71,9 @@ cat << _EOF_
 
 _EOF_
 
+# go ahead and leave
+exit 0
+
 }
 
 # Execution.
@@ -69,26 +82,19 @@ _EOF_
 
 echo "Up -- Debian/Ubuntu Update Tool (Version 1.1)"
 
-# Update and clean:
+for arg in $*
+do
+    case "${arg}" in
+	--clean)
+	    CLEAN=yes;;
+	--help)
+	    up-help;;
+	*)
+	    echo "Up Error: Invalid argument ${arg}. Try 'up --help' for more info." >&2
+	    exit 1;;
+    esac
+done
 
-if [ "$1" == "--clean" ]; then
-    update
-    clean
-    leave
-fi
-
-if [ "$1" == "--help" ]; then
-    up-help
-    exit
-fi
-
-# Check for invalid argument
-
-if  [ -n "$1"  ]; then
-    echo "Up Error: Invalid argument. Try 'up --help' for more info." >&2
-    exit 1
-fi
-
+# if you get here, go ahead and update
 update
 leave
-
